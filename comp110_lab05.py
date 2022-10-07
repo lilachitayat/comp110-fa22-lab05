@@ -5,6 +5,7 @@ Exercises from lab 05, dealing with strings and file reading.
 """
 
 def max_wind_speed(hurricane_filename):
+
     """
     Finds the maximum wind speed for the hurricane.
 
@@ -15,7 +16,14 @@ def max_wind_speed(hurricane_filename):
     (type: int) The maximum wind speed of the hurricane.
     """
 
-    pass # replace this line with your implementation of this function
+    openfile = open(hurricane_filename, "r")
+    previous_value = 0 
+    for line in openfile: 
+        vals = line.split(',')
+        if int(vals[4]) > previous_value: 
+            previous_value = int(vals[4])
+    return previous_value 
+
 
 
 def contains_word(word, review):
@@ -33,12 +41,36 @@ def contains_word(word, review):
     (type: boolean) True if word is contained in the review, and false
     otherwise.
     """
+    my_str = review 
+    lowered_str = my_str.lower() 
+    if word in review == review: 
+        return True 
+    else:
+        return False 
+
 
     pass # replace this line with your implementation of this function
 
 
 def test_max_wind_speed():
     """ Function that tests the max_wind_speed function. """
+    new_value = max_wind_speed("irma.csv") 
+    if new_value == 185:
+        print("max_wind_speed(irma.csv) PASSED")
+    if new_value != 185:
+        print("max_wind_speed(irma.csv FAILED")
+    new_value2 = max_wind_speed("dorian.csv") 
+    if new_value2 == 185:
+        print("max_wind_speed(dorian.csv) PASSED")
+    if new_value2 != 185:
+        print("max_wind_speed(dorian.csv FAILED")
+    new_value3 = max_wind_speed("florence.csv") 
+    if new_value3 == 140:
+        print("max_wind_speed(florence.csv) PASSED")
+    if new_value3 != 140:
+        print("max_wind_speed(florence.csv FAILED")
+
+
 
     print("Starting test of max_wind_speed")
 
